@@ -12,6 +12,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01_init.sql
+      - ./db/mock_data.csv:/docker-entrypoint-initdb.d/mock_data.csv
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d game"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
