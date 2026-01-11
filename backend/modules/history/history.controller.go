@@ -18,7 +18,6 @@ func Register(r *gin.Engine, db *gorm.DB) {
 
 		page := 1
 
-		// ถ้า frontend ส่ง offset มา → แปลงเป็น page
 		if offsetStr != "" {
 			if offset, err := strconv.Atoi(offsetStr); err == nil {
 				page = (offset / 10) + 1
