@@ -20,7 +20,10 @@ export default function SpinPage() {
 
   useEffect(() => {
     const p = localStorage.getItem("player");
-    if (p) {
+    if (!p) {
+      router.push("/");
+      return;
+    } else {
       const player = JSON.parse(p);
 
       // eslint-disable-next-line react-hooks/set-state-in-effect
